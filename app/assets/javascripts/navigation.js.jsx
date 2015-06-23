@@ -3,20 +3,22 @@ var Navigation = React.createClass({
   render: function () {
     return (
       <nav>
-      <p onClick={this.homeClicked} className="btn btn-primary">Home</p>
-      <p onClick={this.homeClicked} className="btn btn-primary">Posts</p>
+        <NavLink name='Home' url='/' />
+        <NavLink name='Posts' url='/posts' />
+        <NavLink name='About' url='/about' />
       </nav>
       );
   },
-  homeClicked: function () {
-    window.location.href = '/';
-  },
-  postsClicked: function () {
-    this.navigate('/posts');
-  },
-
-  navigate: function(url) {
-    window.location.href = url;
-  }
 
 });
+
+var NavLink = React.createClass({
+  render:function () {
+    return (<a onClick={this.clicked} className= 'btn btn-default'>{this.props.name}</a>)
+  },
+
+  clicked: function() {
+    window.location.href = this.props.url;
+  }
+})
+
